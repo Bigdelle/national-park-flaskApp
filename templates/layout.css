@@ -1,0 +1,10 @@
+.header {
+    display:flex;
+    align-items:left;
+    padding-left: .9em;
+    padding-top: 0em;
+    flex-direction:column;
+    background-color: rgb(5, 109, 27);
+    color: white;
+    height: 4.5em;
+}
