@@ -1,11 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="col-sm-2 col-form-label">
+        <form method="POST">
+            <input class="form-control" name="park_code" placeholder="Parkcode!" />
+            <input class="btn btn-primary" type="submit" />
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+
     <div>
         {% for datas in data['data'] %}
             <span>{{ datas['id'] }}</span>
-            <p>{{ datas['name'] }}</p>
+
+            <p>{{ datas['parks'][0]['parkCode'] }}</p>
         {% endfor %}
+
     </div>
 {% endblock content %}
 
