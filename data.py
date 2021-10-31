@@ -1,3 +1,4 @@
+from logging import info
 import urllib.request, json
 
 def get_data(query, parkcode):
@@ -18,4 +19,19 @@ def get_parks(activity):
                 dict[park_data['data'][x]['parks'][y]['parkCode']] = park_data['data'][x]['parks'][y]['fullName']
     return dict
 
+def get_name(park_code):
+    name_info = get_data('parks', park_code)
+    name = name_info['data'][0]['fullName'] + ': ' + name_info['data'][0]['parkCode']
+    return name
+
+
+def get_description(park_code):
+    description_info = get_data('parks', park_code)
+    description = description_info['data'][0]['description']
+    return description
+
+def get_image(park_code):
+    image_info = get_data('parks', park_code)
+    info = image_info['data'][0]['images'][0]['url']
+    return info
 

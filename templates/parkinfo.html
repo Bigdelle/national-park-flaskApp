@@ -1,2 +1,6 @@
 {% extends 'base.html' %}
-<h1> test</h1>
+{% block content %}
+    <h1> {{data}} </h1>
+    <p> {{desc}} </p>
+    <img src="{{image}}" alt="{{data}} Image" style="width:200px;height:300px;">
+{% endblock content %}

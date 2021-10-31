@@ -25,7 +25,6 @@ def index():
 
 @app.route('/activities', methods=['POST'])
 def my_newform_post():
-
     activity = str(request.form['park_code'])
     parks = dict(data.get_parks(activity))
     global data_stuff
@@ -38,4 +37,19 @@ def my_newform_post():
 def index_render():
     return render_template('return.html', data = data_stuff, val=values)
 
+@app.route('/return', methods=['POST'])
+def get_info():
+    global park_id
+    park_id = request.form['park-but']
+    park_id = park_id[park_id.rfind(' ')+1:]
+    print(park_id)
+    return redirect('/parkinfo')
+    
+
+@app.route('/parkinfo')
+def parkinfo_index():
+    park_name = data.get_name(park_id)
+    description = data.get_description(park_id)
+    img = data.get_image(park_id)
+    return render_template('parkinfo.html', data = park_name, desc = description, image = img)
 
