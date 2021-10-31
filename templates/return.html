@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1>{{ val }}</h1>
+    <table>
+    {% for key, value in data.items() %}
+       <tr>
+            <th> {{ value }}</th>
+            <form method="POST">
+                <td><button name = 'park-but' class="btn btn-danger navbar-btn">Park Code: {{key}}</button></td>
+            </form>
+           
+       </tr>
+    {% endfor %}
+    </table>
+{% endblock content %}

@@ -1,6 +1,10 @@
-from flask import Flask, render_template, request
+
+from flask import Flask, render_template, request, redirect, url_for
+from flask.templating import render_template_string
 import requests
 import json
+import data
+
 
 app = Flask(__name__)
 
@@ -21,6 +25,17 @@ def index():
 
 @app.route('/activities', methods=['POST'])
 def my_newform_post():
-    park_code = request.form['park_code']
-    print(park_code)
-    return 'bithc'
+
+    activity = str(request.form['park_code'])
+    parks = dict(data.get_parks(activity))
+    global data_stuff
+    global values
+    data_stuff = parks
+    values = activity
+    return redirect('/return')
+
+@app.route('/return')
+def index_render():
+    return render_template('return.html', data = data_stuff, val=values)
+
+

@@ -15,9 +15,7 @@ def get_parks(activity):
         if park_data['data'][x].get('name') == activity:
             tot = len(park_data['data'][x]['parks'])
             for y in range(0,tot):
-                dict[park_data['data'][x]['parks'][y]['parkCode']] = park_data['data'][x]['parks'][y]['designation']
-    print(dict)
+                dict[park_data['data'][x]['parks'][y]['parkCode']] = park_data['data'][x]['parks'][y]['fullName']
+    return dict
 
 
-
-get_parks('Auto and ATV')
