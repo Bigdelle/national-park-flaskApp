@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for
 from flask.templating import render_template_string
 import requests
@@ -31,6 +30,8 @@ def my_newform_post():
     global values
     data_stuff = parks
     values = activity
+    if len(data_stuff) == 0:
+        values = 'There is no activity that matches the input'
     return redirect('/return')
 
 @app.route('/return')
@@ -52,4 +53,3 @@ def parkinfo_index():
     description = data.get_description(park_id)
     img = data.get_image(park_id)
     return render_template('parkinfo.html', data = park_name, desc = description, image = img)
-
