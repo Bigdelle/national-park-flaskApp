@@ -7,4 +7,4 @@ know much more python than I do JS. When deploying, Heroku kept giving an error 
 troubleshooting docs were pretty insufficient to figure out what was wrong, so I am hosting it on 
 PythonAnywhere, which worked very easily.
 
-Here is the live website link: http://bbigdelle.pythonanywhere.com/activities
+Here is the live website link: http://bbigdelle.pythonanywhere.com/
