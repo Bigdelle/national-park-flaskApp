@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h1 style="text-align: center;">The list below shows activities that you can search!</h1>
+    <h5 style='margin:auto; text-align:justify;'>'Arts and Culture', 'Astronomy', 'Auto and ATV', 'Biking', 'Boating', 'Camping', 'Canyoneering', 'Caving', 'Climbing', 'Compass and GPS', 'Dog Sledding', 'Fishing', 'Flying', 'Food', 'Golfing', 'Guided Tours', 'Hands-On', 'Hiking', 'Horse Trekking', 'Hunting and Gathering', 'Ice Skating', 'Junior Ranger Program', 'Living History', 'Museum Exhibits', 'Paddling', 'Park Film', 'Playground', 'SCUBA Diving', 'Shopping', 'Skiing', 'Snorkeling', 'Snow Play',
+         'Snowmobiling', 'Snowshoeing', 'Surfing', 'Swimming', 'Team Sports', 'Tubing', 'Water Skiing', 'Wildlife Watching'</h5>
     <br>
-    <br>
-        <form method="POST" style = "margin:auto; width:30%;">
-            <input class="form-control" name="park_code" placeholder="Acitivity Name!" />
-            <a href = '/return'><input class="btn btn-primary" type="submit" /></a>
-        </form>
+    
+    <form method="POST" style = "margin:auto; width:30%;">
+        <input class="form-control" name="park_code" placeholder="Acitivity Name!" />
+        <a href = '/return'><input style = "width:100%;" class="btn btn-primary" type="submit" /></a>
+    </form>
 
 {% endblock content %}
 

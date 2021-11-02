@@ -19,6 +19,7 @@ def get_parks(activity):
                 dict[park_data['data'][x]['parks'][y]['parkCode']] = park_data['data'][x]['parks'][y]['fullName']
     return dict
 
+
 def get_name(park_code):
     name_info = get_data('parks', park_code)
     name = name_info['data'][0]['fullName'] + ': ' + name_info['data'][0]['parkCode']
