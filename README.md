@@ -8,4 +8,3 @@ troubleshooting docs were pretty insufficient to figure out what was wrong, so I
 PythonAnywhere, which worked very easily.
 
 Here is the live website link: http://bbigdelle.pythonanywhere.com/activities
-http://bbigdelle.pythonanywhere.com/activities
