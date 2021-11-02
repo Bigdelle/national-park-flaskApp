@@ -35,3 +35,14 @@ def get_image(park_code):
     info = image_info['data'][0]['images'][0]['url']
     return info
 
+def get_lat(park_code):
+    lat_info = get_data('parks', park_code)
+    lat = lat_info['data'][0]['latLong']
+    return lat
+
+def get_state(park_code):
+    state_info = get_data('parks', park_code)
+    state = state_info['data'][0]['states']
+    return state
+
+

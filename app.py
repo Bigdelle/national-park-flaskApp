@@ -52,4 +52,6 @@ def parkinfo_index():
     park_name = data.get_name(park_id)
     description = data.get_description(park_id)
     img = data.get_image(park_id)
-    return render_template('parkinfo.html', data = park_name, desc = description, image = img)
+    lat_long = data.get_lat(park_id)
+    state = data.get_state(park_id)
+    return render_template('parkinfo.html', data = park_name, desc = description, image = img, lat = lat_long, st = state)

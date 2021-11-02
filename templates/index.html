@@ -1,1 +1,38 @@
 {% extends 'base.html' %}
+
+{% block content %}
+    <img src="https://afar-production.imgix.net/uploads/images/afar_post_headers/images/iDlkx4v5ic/original_Rocky_20Mountain_20National_20Park.jpg?auto=compress,format&fit=crop&crop=top&lossless=true&w=1600&h=700" alt="{{data}} Image" style="width:100%;">
+
+    <h1>Quick note:</h1>
+    <p>
+        For the Capital one SES Challenge, we were tasked with creating a website that uses the National Park's API to show park information.
+        Specifically, we had the responsibility of showing the activities of each park and having pages that show information about the park itself.
+        With that being said, I started by trying to use React. However, I have much more experience in Python and find Flask much more intuitive, so 
+        I quickly shifted to using Flask. React is great, but my JS background isn't as strong as my Python. I still had almost no experience in Flask, so I spent a few hours going over the docs and trying to test things out before starting the actual project.
+    </p>
+    <h3>How</h3>
+    <p>
+        So, lets discuss how I did this. First I created a module called data.py where I included all the functions that extracted the data 
+        from the API. This was fairly simple after I figured out how to parse through JSON data. I had to do a fair bit of research in order to
+        see how to work with dictionaries (since the API data was in that form) and then try to sift through all the stuff I didn't want. After doing
+        this, the website started to take shape. I had the information displaying.
+    </p>
+    <h3>Big Challenge</h3>
+    <p>
+        The next hardest part was definitely getting the buttons for each park to link to the page for the information about it. The button for
+        the parks is actually just one button that is iteratively called with a different text. So, I had to give each button the value of the
+        park code, and then save that code if it was clicked, which would link to another page that showed info about that park.
+    </p>
+
+    <h3>Styling</h3>
+    <p>
+        For styling, I tried to use Bootstrap as much as possible because, well, that's what it's there for. 
+    </p>
+
+    <h3>Deployment</h3>
+    <p>
+        After figuring out that Github Pages doesn't host Flask web apps, I tried to use Heroku. I set everything up how I was supposed to,
+        including a Procfile and requirements.txt file. However, the app kept crashing with an error that Heroku Docs didn't give much info
+        about. Therefore, I tried PythonAnywhere, and it worked perfectly.
+    </p>
+{% endblock content %}
