@@ -11,35 +11,39 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+
 @app.route("/index")
-def home_index():
+def index_home():
     return render_template('index.html')
 
 
 @app.route('/activities')
-def index():
-    req = requests.get('https://developer.nps.gov/api/v1/activities/parks?parkCode=&api_key=3wguztEg5MM7UMGZI7jFbo2cBBhXvUq30k53GJHV')
-    data = json.loads(req.content)
-    return render_template('activities.html', data=data)
+def index_activities():
+    #req = requests.get('https://developer.nps.gov/api/v1/activities/parks?parkCode=&api_key=3wguztEg5MM7UMGZI7jFbo2cBBhXvUq30k53GJHV')
+    #data = json.loads(req.content)
+    return render_template('activities.html')
+
 
 @app.route('/activities', methods=['POST'])
-def my_newform_post():
+def activities_form():
     activity = str(request.form['park_code'])
     parks = dict(data.get_parks(activity))
-    global data_stuff
+    global park_data
     global values
-    data_stuff = parks
+    park_data = parks
     values = activity
-    if len(data_stuff) == 0:
+    if len(park_data) == 0:
         values = 'There is no activity that matches the input'
     return redirect('/return')
 
+
 @app.route('/return')
-def index_render():
-    return render_template('return.html', data = data_stuff, val=values)
+def index_return():
+    return render_template('return.html', data = park_data, val=values)
+
 
 @app.route('/return', methods=['POST'])
-def get_info():
+def park_id_form():
     global park_id
     park_id = request.form['park-but']
     park_id = park_id[park_id.rfind(' ')+1:]
@@ -48,17 +52,22 @@ def get_info():
     
 
 @app.route('/parkinfo')
-def parkinfo_index():
+def index_parkinfo():
     park_name = data.get_name(park_id)
     description = data.get_description(park_id)
     img = data.get_image(park_id)
     lat_long = data.get_lat(park_id)
     state = data.get_state(park_id)
-    return render_template('parkinfo.html', data = park_name, desc = description, image = img, lat = lat_long, st = state)
+    url = data.get_url(park_id)
+    dir, dirURL = data.get_directions(park_id)
+    return render_template('parkinfo.html', data = park_name, desc = description, image = img, lat = lat_long, st = state, urls = url,
+    directions = dir, directionsUrl = dirURL)
+
 
 @app.route('/state')
-def state_index():
+def index_state():
     return render_template('state.html')
+
 
 @app.route('/state', methods=['POST'])
 def form_state_code():
@@ -67,18 +76,19 @@ def form_state_code():
     global state_data
     global states_code
     state_data = parks
-    states_code = state_code
+    states_code = state_code.upper()
     if len(state_data) == 0:
         states_code = 'No parks or invalid input'
     return redirect('/state_search')
 
 
 @app.route('/state_search')
-def state_search_index():
+def index_state_sarch():
     return render_template('state_search.html', data = state_data, val=states_code)
 
+
 @app.route('/state_search', methods=['POST'])
-def get_state_info():
+def form_state_search():
     global park_id
     park_id = request.form['park-but']
     park_id = park_id[park_id.rfind(' ')+1:]

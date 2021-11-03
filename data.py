@@ -8,6 +8,7 @@ def get_data(query, parkcode):
     JSON_object = json.loads(data.decode('utf-8'))
     return JSON_object
 
+
 def get_data_max(query, limit, parkcode):
     #limit functionality
     urlData = 'https://developer.nps.gov/api/v1/' + query + '?limit=' + limit + 'parkCode=' + parkcode + '&api_key=3wguztEg5MM7UMGZI7jFbo2cBBhXvUq30k53GJHV'
@@ -15,6 +16,7 @@ def get_data_max(query, limit, parkcode):
     data = webURL.read()
     JSON_object = json.loads(data.decode('utf-8'))
     return JSON_object
+
 
 def get_parks(activity):
     park_data = get_data('activities/parks', '')
@@ -39,20 +41,37 @@ def get_description(park_code):
     description = description_info['data'][0]['description']
     return description
 
+
 def get_image(park_code):
     image_info = get_data('parks', park_code)
     info = image_info['data'][0]['images'][0]['url']
     return info
+
 
 def get_lat(park_code):
     lat_info = get_data('parks', park_code)
     lat = lat_info['data'][0]['latLong']
     return lat
 
+
 def get_state(park_code):
     state_info = get_data('parks', park_code)
     state = state_info['data'][0]['states']
     return state
+
+
+def get_url(park_code):
+    url_info = get_data('parks', park_code)
+    url = url_info['data'][0]['url']
+    return url
+
+
+def get_directions(park_code):
+    directions_info = get_data('parks', park_code)
+    directions = directions_info['data'][0]['directionsInfo']
+    directionsURL = directions_info['data'][0]['directionsUrl']
+    return directions, directionsURL
+
 
 def get_parks_state(state_code):
     park_data = get_data_max('parks', '464', '')
