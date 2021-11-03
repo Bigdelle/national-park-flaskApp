@@ -11,7 +11,12 @@
     <p style = "text-align:center;"><a href="{{directionsURL}}">{{directionsUrl}}</a></p>
     <p style = "text-align:justify; margin: auto; width: 80%">Coordinates: {{lat}}, which is in {{st}}</p>
     <br>
-    <br>
     <h1 style = "text-align:center">Hours</h1>
+    <div style = "text-align:justify; margin:auto; width:80%">
+        <p>{{hour_descrip}}</p>
+        {% for key, value in hour.items() %}
+            <h3>{{key}}: {{value}}</h3>
+        {% endfor %}
+    </div>
 {% endblock content %}
 

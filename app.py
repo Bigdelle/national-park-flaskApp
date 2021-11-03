@@ -60,8 +60,9 @@ def index_parkinfo():
     state = data.get_state(park_id)
     url = data.get_url(park_id)
     dir, dirURL = data.get_directions(park_id)
+    hours, hour_desc = data.get_hours(park_id)
     return render_template('parkinfo.html', data = park_name, desc = description, image = img, lat = lat_long, st = state, urls = url,
-    directions = dir, directionsUrl = dirURL)
+    directions = dir, directionsUrl = dirURL, hour=hours, hour_descrip = hour_desc)
 
 
 @app.route('/state')
@@ -93,4 +94,17 @@ def form_state_search():
     park_id = request.form['park-but']
     park_id = park_id[park_id.rfind(' ')+1:]
     return redirect('/parkinfo')
-    
+
+@app.route('/webcams')
+def index_webcams():
+    return render_template('webcams.html')
+
+@app.route('/webcams', methods=['POST'])
+def webcame_form_state_code():
+    park_code = str(request.form['park_code'])
+    return redirect('/webcam_dynamic')
+
+
+@app.route('/webcam_dynamic')
+def index_webcam_dynamic():
+    return render_template('webcam_dynamic.html')

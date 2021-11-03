@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style="text-align: center;">Webcam Viewer!</h1>
+    <h5 style='text-align:center;'>Please input a valid park code!</h5>
+    <br>
+    
+    <form method="POST" style = "margin:auto; width:30%;">
+        <input class="form-control" name="park_code" placeholder="Park Code!" />
+        <a href = '/webcam_dynamic'><input style = "width:100%;" class="btn btn-primary" type="submit" /></a>
+    </form>
+
+{% endblock content %}
+

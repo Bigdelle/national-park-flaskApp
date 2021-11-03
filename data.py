@@ -80,3 +80,13 @@ def get_parks_state(state_code):
         if park_data['data'][x].get('states').lower() == state_code.lower():
             dict[park_data['data'][x]['parkCode']] = park_data['data'][x]['fullName']
     return dict
+
+
+def get_hours(park_code):
+    hours_info = get_data('parks', park_code)
+    days = ['Wednesday', 'Monday', 'Thursday', 'Sunday', 'Tuesday', 'Friday', 'Saturday']
+    hours_dict = {}
+    for x in range(0, 7):  
+        hours_dict[days[x]] = hours_info['data'][0]['operatingHours'][0]['standardHours'][days[x].lower()]
+    description = hours_info['data'][0]['operatingHours'][0]['description']
+    return hours_dict, description
