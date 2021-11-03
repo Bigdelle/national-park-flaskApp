@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1 style="text-align:center;">{{ val }}</h1>
+    <table style="margin:auto; width:80%">
+    {% for key, value in data.items() %}
+       <tr>
+            <th> {{ value }}</th>
+            <form method="POST">
+                <td><input style="margin-left:100px;" type="submit" name="park-but" class="btn btn-danger navbar-btn" value="Park Code: {{key}}"></td>
+                <!--<td><button><input name = 'park-but' class='btn btn-danger navbar-btn' type = 'submit' value = '{{key}}'>Park Code: {{key}}</button></td>-->
+            </form>
+       </tr>
+    {% endfor %}
+    </table>
+
+    
+{% endblock content %}

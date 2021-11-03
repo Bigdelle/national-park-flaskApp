@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style="text-align: center;">Search for parks in your state!</h1>
+    <h5 style='margin:auto; text-align:justify;'>To find parks, you must input a state through its state code. For example,
+    for New Jersey, input 'NJ'. Similarly, for California, input 'CA'</h5>
+    <br>
+    
+    <form method="POST" style = "margin:auto; width:30%;">
+        <input class="form-control" name="state_code" placeholder="State Code!" />
+        <a href = '/return'><input style = "width:100%;" class="btn btn-primary" type="submit" /></a>
+    </form>
+
+{% endblock content %}
+

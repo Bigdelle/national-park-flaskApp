@@ -55,3 +55,32 @@ def parkinfo_index():
     lat_long = data.get_lat(park_id)
     state = data.get_state(park_id)
     return render_template('parkinfo.html', data = park_name, desc = description, image = img, lat = lat_long, st = state)
+
+@app.route('/state')
+def state_index():
+    return render_template('state.html')
+
+@app.route('/state', methods=['POST'])
+def form_state_code():
+    state_code = str(request.form['state_code'])
+    parks = dict(data.get_parks_state(state_code))
+    global state_data
+    global states_code
+    state_data = parks
+    states_code = state_code
+    if len(state_data) == 0:
+        states_code = 'No parks or invalid input'
+    return redirect('/state_search')
+
+
+@app.route('/state_search')
+def state_search_index():
+    return render_template('state_search.html', data = state_data, val=states_code)
+
+@app.route('/state_search', methods=['POST'])
+def get_state_info():
+    global park_id
+    park_id = request.form['park-but']
+    park_id = park_id[park_id.rfind(' ')+1:]
+    return redirect('/parkinfo')
+    

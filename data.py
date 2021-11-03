@@ -8,12 +8,20 @@ def get_data(query, parkcode):
     JSON_object = json.loads(data.decode('utf-8'))
     return JSON_object
 
+def get_data_max(query, limit, parkcode):
+    #limit functionality
+    urlData = 'https://developer.nps.gov/api/v1/' + query + '?limit=' + limit + 'parkCode=' + parkcode + '&api_key=3wguztEg5MM7UMGZI7jFbo2cBBhXvUq30k53GJHV'
+    webURL = urllib.request.urlopen(urlData)
+    data = webURL.read()
+    JSON_object = json.loads(data.decode('utf-8'))
+    return JSON_object
+
 def get_parks(activity):
     park_data = get_data('activities/parks', '')
     total = park_data['total']
     dict = {}
     for x in range (0, int(total)):
-        if park_data['data'][x].get('name') == activity:
+        if park_data['data'][x].get('name').lower() == activity.lower():
             tot = len(park_data['data'][x]['parks'])
             for y in range(0,tot):
                 dict[park_data['data'][x]['parks'][y]['parkCode']] = park_data['data'][x]['parks'][y]['fullName']
@@ -46,4 +54,10 @@ def get_state(park_code):
     state = state_info['data'][0]['states']
     return state
 
-
+def get_parks_state(state_code):
+    park_data = get_data_max('parks', '464', '')
+    dict = {}
+    for x in range (0, 464):
+        if park_data['data'][x].get('states').lower() == state_code.lower():
+            dict[park_data['data'][x]['parkCode']] = park_data['data'][x]['fullName']
+    return dict
