@@ -1,5 +1,13 @@
 from logging import info
 import urllib.request, json
+import random
+
+def random_picture():
+    images = ['https://afar-production.imgix.net/uploads/images/afar_post_headers/images/iDlkx4v5ic/original_Rocky_20Mountain_20National_20Park.jpg?auto=compress,format&fit=crop&crop=top&lossless=true&w=1600&h=700',
+    'https://cdn.cheapism.com/images/National_Park_Photos.2e16d0ba.fill-1440x605.png', 'https://www.nps.gov/articles/images/GRSA_NPSphoto_960w.jpg?maxwidth=1200&maxheight=1200&autorotate=false',
+    'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hiker-in-north-window-arch-royalty-free-image-1588786762.jpg?crop=1.00xw:0.752xh;0,0.103xh&resize=1200:*',
+    'https://www.fodors.com/wp-content/uploads/2020/11/gert-boers-qQC8tyG_JVA-1920-unsplash-800-crop.jpg', 'https://www.visitarizona.com/imager/s3_us-west-1_amazonaws_com/aot-2020/images/landmarks/cpebdgynftnhaigpec7f_b2b0b89039603b931027eb2900b66531.jpg']
+    return random.choice(images)
 
 def get_data(query, parkcode):
     urlData = 'https://developer.nps.gov/api/v1/' + query + '?parkCode=' + parkcode + '&api_key=3wguztEg5MM7UMGZI7jFbo2cBBhXvUq30k53GJHV'

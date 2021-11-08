@@ -9,12 +9,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    url = data.random_picture()
+    return render_template('index.html', data = url)
 
 
 @app.route("/index")
 def index_home():
-    return render_template('index.html')
+    url = data.random_picture()
+    return render_template('index.html', data = url)
 
 
 @app.route('/activities')
