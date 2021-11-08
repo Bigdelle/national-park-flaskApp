@@ -90,3 +90,11 @@ def get_hours(park_code):
         hours_dict[days[x]] = hours_info['data'][0]['operatingHours'][0]['standardHours'][days[x].lower()]
     description = hours_info['data'][0]['operatingHours'][0]['description']
     return hours_dict, description
+
+def get_webcame(park_code):
+    returned = ''
+    web_info = get_data('webcams', park_code)
+    streaming_status = web_info['data'][0]['isStreaming']
+    if streaming_status == False:
+        returned = 'Not Streaming'
+    return returned
