@@ -91,10 +91,22 @@ def get_hours(park_code):
     description = hours_info['data'][0]['operatingHours'][0]['description']
     return hours_dict, description
 
-def get_webcame(park_code):
-    returned = ''
+def get_webcam(park_code):
+    status = 'Actively Streaming :)'
     web_info = get_data('webcams', park_code)
-    streaming_status = web_info['data'][0]['isStreaming']
-    if streaming_status == False:
-        returned = 'Not Streaming'
-    return returned
+    try:
+        streaming_status = web_info['data'][0]['status']
+        if streaming_status == 'Inactive':
+          status = 'Not actively streaming :('
+          url = ''
+          return status, url
+        elif streaming_status == 'Active':
+            return status, web_info['data'][0]['url']
+    except:
+        status = 'There is no park with that code!'
+        url = ''
+        return status, url
+    status = 'That park is not streaming actively'
+    url = ''
+    return status, url
+    

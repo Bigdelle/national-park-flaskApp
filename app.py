@@ -101,10 +101,12 @@ def index_webcams():
 
 @app.route('/webcams', methods=['POST'])
 def webcame_form_state_code():
-    park_code = str(request.form['park_code'])
+    global park_d
+    park_d = str(request.form['park_code'])
     return redirect('/webcam_dynamic')
 
 
 @app.route('/webcam_dynamic')
 def index_webcam_dynamic():
-    return render_template('webcam_dynamic.html')
+    status, cam_url = data.get_webcam(park_d)
+    return render_template('webcam_dynamic.html', data = park_d.upper(), url = cam_url, stat = status)
